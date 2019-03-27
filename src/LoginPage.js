@@ -18,15 +18,46 @@ const FormButton = styled(Button)`
 `;
 
 function LoginForm() {
+  const [formState, set] = React.useState({
+    loginID: '',
+    password: ''
+  });
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    const newState = Object.assign({}, formState, {
+      [name]: value
+    });
+    set(newState);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    fetch('http://localhost:3000/api/accounts', {
+      method: 'POST',
+      body: JSON.stringify(formState),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        if ('token' in data) {
+          window.location.assign('/home');
+        }
+      });
+  };
+
   return (
     <Form>
       <FormGroup>
-        <Label for="lecturerID">Lecturer ID</Label>
+        <Label for="loginID">Login ID</Label>
         <Input
           type="text"
-          name="lecturerID"
-          id="lecturerID"
-          placeholder="xxx-xxxx-xxx"
+          name="loginID"
+          id="loginID"
+          placeholder="xxx-xxx-xxxx"
+          onChange={handleChange}
         />
       </FormGroup>
       <FormGroup>
@@ -36,6 +67,7 @@ function LoginForm() {
           name="password"
           id="password"
           placeholder="********"
+          onChange={handleChange}
         />
       </FormGroup>
       <FormGroup check>
@@ -44,7 +76,9 @@ function LoginForm() {
           <FormText>Remember me</FormText>
         </Label>
       </FormGroup>
-      <FormButton color="success">Login</FormButton>
+      <FormButton type="submit" color="success" onClick={handleSubmit}>
+        Login
+      </FormButton>
     </Form>
   );
 }

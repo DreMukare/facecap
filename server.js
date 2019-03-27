@@ -1,10 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const dal = require('./data-access-layer');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.get('/', function(q, s, x) {
   s.json({ status: 'ok' });
