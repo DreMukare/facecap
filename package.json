@@ -4,9 +4,10 @@
   "version": "0.0.0-development",
   "main": "index.js",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "npm run-script serve:api & npm run-script serve:app",
     "build": "parcel build index.html",
-    "serve": "node server.js"
+    "serve:app": "parcel index.html",
+    "serve:api": "node api/server.js"
   },
   "keywords": [],
   "dependencies": {
