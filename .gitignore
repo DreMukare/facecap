@@ -1,0 +1,7 @@
+# dependecies directory
+node_modules/
+# build directories
+build/
+dist/
+# parcel cache directory
+.cache/
