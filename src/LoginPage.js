@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Alert,
   Button,
   Col,
   Container,
@@ -19,23 +20,22 @@ const FormButton = styled(Button)`
 
 function LoginForm() {
   const [formState, set] = React.useState({
-    loginID: '',
-    password: ''
+    input: { loginID: '', password: '' },
+    invalid: false
   });
+
+  const setState = next => set(Object.assign({}, formState, next));
 
   const handleChange = e => {
     const { name, value } = e.target;
-    const newState = Object.assign({}, formState, {
-      [name]: value
-    });
-    set(newState);
+    setState({ input: Object.assign({}, formState.input, { [name]: value }) });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     fetch('http://localhost:3000/api/accounts', {
       method: 'POST',
-      body: JSON.stringify(formState),
+      body: JSON.stringify(formState.input),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -44,12 +44,17 @@ function LoginForm() {
       .then(data => {
         if ('token' in data) {
           window.location.assign('/home');
+          return;
         }
+        setState({ invalid: true });
       });
   };
 
   return (
     <Form>
+      {formState.invalid && (
+        <Alert color="danger">Invalid login or password!</Alert>
+      )}
       <FormGroup>
         <Label for="loginID">Login ID</Label>
         <Input
