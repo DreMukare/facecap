@@ -1,8 +1,11 @@
 {
   "database": {
-    "host": "localhost",
-    "user": "test",
-    "password": "test",
-    "database": "test"
+    "client": "mysql",
+    "connection": {
+      "host": "localhost",
+      "user": "test",
+      "password": "test",
+      "database": "test"
+    }
   }
 }

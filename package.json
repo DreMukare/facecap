@@ -7,7 +7,8 @@
     "start": "npm run-script serve:api & npm run-script serve:app",
     "build": "parcel build index.html",
     "serve:app": "parcel index.html",
-    "serve:api": "node api/server.js"
+    "serve:api": "node api/server.js",
+    "knex": "knex"
   },
   "keywords": [],
   "dependencies": {
