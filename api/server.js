@@ -25,6 +25,18 @@ app.post('/api/accounts', function(q, s, x) {
     .catch(err => s.status(500).json({ message: 'internal server error' }));
 });
 
+app.get('/api/courses', function(q, s, x) {
+  dal.fetchAll('courses').then(rows => s.json(rows));
+});
+
+app.get('/api/units', function(q, s, x) {
+  dal.fetchAll('units').then(rows => s.json(rows));
+});
+
+app.get('/api/students', function(q, s, x) {
+  dal.fetchAll('students').then(rows => s.json(rows));
+});
+
 app.listen(PORT, function() {
   console.log('Listening on', PORT);
 });
