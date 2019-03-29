@@ -9,13 +9,13 @@ exports.up = function(knex, Promise) {
     .createTable('courses', function(table) {
       table.increments('course_id').primary();
       table.string('course_code', 5);
-      table.string('course_name', 30);
+      table.string('course_name', 50);
       table.timestamps(false, true);
     })
     .createTable('units', function(table) {
       table.increments('unit_id').primary();
       table.string('unit_code', 10);
-      table.string('unit_name', 30);
+      table.string('unit_name', 50);
       table.timestamps(false, true);
       table
         .integer('course_id')
