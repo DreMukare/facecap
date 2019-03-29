@@ -1,4 +1,6 @@
-> # barebones-react-express-sql
+> # facecap
+
+*A digital class attendance register prototype application based on facial image recognition*
 
 ## Prerequisites
 - MySQL `> 5.7.0`
