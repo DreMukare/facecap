@@ -26,7 +26,9 @@ function Dashboard() {
   return (
     <Row>
       <Col sm="6">
-        <Option cta="Take attendance" to="/" />
+        <Option cta="Take attendance" to="/home/records/create" />
+      </Col>
+      <Col sm="6">
         <Option cta="View records" to="/home/records" />
       </Col>
     </Row>
