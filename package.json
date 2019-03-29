@@ -1,10 +1,10 @@
 {
-  "name": "barebones-react-express-sql",
-  "description": "",
+  "name": "facecap",
+  "description": "A digital class attendance register prototype application based on facial image recognition",
   "version": "0.0.0-development",
-  "main": "index.js",
+  "main": "api/server.js",
   "scripts": {
-    "start": "npm run-script serve:api & npm run-script serve:app",
+    "dev": "nodemon --config config/nodemon.json & npm run-script serve:app",
     "build": "parcel build index.html",
     "serve:app": "parcel index.html",
     "serve:api": "node api/server.js",
@@ -22,10 +22,10 @@
     "react-dom": "^16.8.3",
     "react-router-dom": "^5.0.0",
     "react-webcam": "^1.1.1",
-    "reactstrap": "^7.1.0",
-    "styled-components": "^4.2.0"
+    "reactstrap": "^7.1.0"
   },
   "devDependencies": {
+    "nodemon": "^1.18.10",
     "parcel-bundler": "^1.11.0"
   }
 }
