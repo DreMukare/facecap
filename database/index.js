@@ -22,10 +22,7 @@ function authenticate(data) {
 }
 
 function fetchAll(tableName) {
-  return knex
-    .select()
-    .from(tableName)
-    .then(rows => rows);
+  return knex.select().from(tableName);
 }
 
 module.exports = {

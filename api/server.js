@@ -30,7 +30,13 @@ app.get('/api/courses', function(q, s, x) {
 });
 
 app.get('/api/units', function(q, s, x) {
-  dal.fetchAll('units').then(rows => s.json(rows));
+  const { course_id } = q.query;
+  const promise = dal.fetchAll('units');
+  if (course_id) {
+    promise.where({ course_id }).then(rows => s.json(rows));
+  } else {
+    promise.then(rows => s.json(rows));
+  }
 });
 
 app.get('/api/students', function(q, s, x) {
