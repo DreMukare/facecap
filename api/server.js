@@ -14,17 +14,15 @@ app.get('/', function(q, s, x) {
 
 app.post('/api/accounts', function(q, s, x) {
   const data = q.body;
-  dal.authenticate(data, function(err, valid) {
-    if (err) {
-      s.status(500).json({ message: 'internal server error' });
-      return x();
-    }
-    if (valid) {
-      s.json({ token: '' });
-      return x();
-    }
-    s.status(401).json({ message: 'invalid credentials' });
-  });
+  dal
+    .authenticate(data)
+    .then(response => {
+      if ('token' in response) {
+        return s.json({ token: response.token });
+      }
+      s.status(401).json({ message: 'invalid credentials' });
+    })
+    .catch(err => s.status(500).json({ message: 'internal server error' }));
 });
 
 app.listen(PORT, function() {
