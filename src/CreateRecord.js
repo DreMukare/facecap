@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Table } from 'reactstrap';
 import Modal from './Modal';
+import Camera from './Camera';
 
 function CreateRecord() {
   return (
@@ -23,7 +24,7 @@ function CreateRecord() {
         </Table>
       </Col>
       <Col sm="6">
-        <video />
+        <Camera />
       </Col>
     </React.Fragment>
   );
