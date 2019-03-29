@@ -26,13 +26,10 @@ function RecordsTable() {
 function Records({ match }) {
   const { path } = match;
   return (
-    <React.Fragment>
-      <h4>Records</h4>
-      <Row>
-        <Route exact path={path} component={RecordsTable} />
-        <Route exact path={`${path}/create`} component={CreateRecord} />
-      </Row>
-    </React.Fragment>
+    <Row>
+      <Route exact path={path} component={RecordsTable} />
+      <Route exact path={`${path}/capture`} component={CreateRecord} />
+    </Row>
   );
 }
 
