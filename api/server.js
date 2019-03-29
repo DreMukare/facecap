@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const dal = require('./data-access-layer');
+const dal = require('../database');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
