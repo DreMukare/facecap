@@ -1,11 +1,17 @@
 {
-  "database": {
+  "knex": {
     "client": "mysql",
     "connection": {
       "host": "localhost",
       "user": "test",
       "password": "test",
       "database": "test"
+    },
+    "migrations": {
+      "directory": "../database/migrations"
+    },
+    "seeds": {
+      "directory": "../database/seeds"
     }
   }
 }

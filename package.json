@@ -8,7 +8,7 @@
     "build": "parcel build index.html",
     "serve:app": "parcel index.html",
     "serve:api": "node api/server.js",
-    "knex": "knex"
+    "knex": "knex --knexfile ./config/knexfile.js"
   },
   "keywords": [],
   "dependencies": {
