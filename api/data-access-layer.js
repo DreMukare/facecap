@@ -1,4 +1,4 @@
-const knex = require('knex')(require('../knexfile'));
+const knex = require('knex')(require('../config/knexfile'));
 
 function authenticate(data) {
   return knex
@@ -21,6 +21,14 @@ function authenticate(data) {
     );
 }
 
+function fetchAll(tableName) {
+  return knex
+    .select()
+    .from(tableName)
+    .then(rows => rows);
+}
+
 module.exports = {
-  authenticate
+  authenticate,
+  fetchAll
 };
