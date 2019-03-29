@@ -11,12 +11,6 @@ import {
   Input,
   Row
 } from 'reactstrap';
-import styled from 'styled-components';
-
-const FormButton = styled(Button)`
-  width: 8rem;
-  margin-top: 1rem;
-`;
 
 function LoginForm() {
   const [formState, set] = React.useState({
@@ -81,32 +75,27 @@ function LoginForm() {
           <FormText>Remember me</FormText>
         </Label>
       </FormGroup>
-      <FormButton type="submit" color="success" onClick={handleSubmit}>
+      <Button
+        type="submit"
+        color="success"
+        onClick={handleSubmit}
+        className="w-50 mt-2"
+      >
         Login
-      </FormButton>
+      </Button>
     </Form>
   );
 }
 
-const CustomRow = styled(Row)`
-  justify-content: center;
-  margin-top: 4rem;
-`;
-
-const CustomCol = styled(Col)`
-  border: 1px solid #ddd;
-  padding: 1rem;
-`;
-
 function LoginPage() {
   return (
     <Container>
-      <CustomRow>
-        <CustomCol md="4">
+      <Row className="justify-content-center mt-5">
+        <Col md="4" className="border p-3">
           <h3>Login</h3>
           <LoginForm />
-        </CustomCol>
-      </CustomRow>
+        </Col>
+      </Row>
     </Container>
   );
 }

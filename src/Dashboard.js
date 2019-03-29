@@ -1,35 +1,33 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Button, Card, CardTitle, Col, Row } from 'reactstrap';
+import { ComposeIcon, FolderOpen } from './Icons';
 
-const CustomLink = styled(Link)`
-  &:hover {
-    text-decoration: none;
-  }
-`;
-
-function Option({ cta, to }) {
+function Option({ cta, to, icon }) {
   return (
     <Card body>
-      <CardTitle />
-      <CustomLink to={to}>
+      <CardTitle className="text-center">{icon}</CardTitle>
+      <Link to={to} className="text-decoration-none">
         <Button outline color="primary" block>
           {cta}
         </Button>
-      </CustomLink>
+      </Link>
     </Card>
   );
 }
 
 function Dashboard() {
   return (
-    <Row>
+    <Row className="align-items-center">
       <Col sm="6">
-        <Option cta="Take attendance" to="/home/records/capture" />
+        <Option
+          cta="Take attendance"
+          to="/home/records/capture"
+          icon={<ComposeIcon />}
+        />
       </Col>
       <Col sm="6">
-        <Option cta="View records" to="/home/records" />
+        <Option cta="View records" to="/home/records" icon={<FolderOpen />} />
       </Col>
     </Row>
   );
