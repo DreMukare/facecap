@@ -1,14 +1,13 @@
 import React from 'react';
-import { Container, Col, Row } from 'reactstrap';
+import { Route } from 'react-router-dom';
+import { Container } from 'reactstrap';
+import Dashboard from './Dashboard';
 
-function HomePage() {
+function HomePage({ match }) {
+  const { path } = match;
   return (
     <Container>
-      <Row>
-        <Col>
-          <h4>Welcome home!</h4>
-        </Col>
-      </Row>
+      <Route path={`${path}/dashboard`} component={Dashboard} />
     </Container>
   );
 }
