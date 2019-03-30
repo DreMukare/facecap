@@ -17,6 +17,7 @@ exports.up = function(knex, Promise) {
       table.string('unit_code', 10);
       table.string('unit_name', 50);
       table.timestamps(false, true);
+      table.integer('total_hours');
       table
         .integer('course_id')
         .unsigned()
@@ -30,6 +31,7 @@ exports.up = function(knex, Promise) {
       table.increments('student_id').primary();
       table.string('first_name', 10);
       table.string('last_name', 10);
+      table.string('registration_number', 20);
       table.timestamps(false, true);
       table
         .integer('course_id')
@@ -39,6 +41,26 @@ exports.up = function(knex, Promise) {
         .notNull()
         .onDelete('cascade')
         .index();
+    })
+    .createTable('attendance', function(table) {
+      table.increments('id').primary();
+      table
+        .integer('student_id')
+        .unsigned()
+        .references('student_id')
+        .inTable('students')
+        .notNull()
+        .onDelete('cascade')
+        .index();
+      table
+        .integer('unit_id')
+        .unsigned()
+        .references('unit_id')
+        .inTable('units')
+        .notNull()
+        .onDelete('cascade')
+        .index();
+      table.integer('total_hours');
     });
 };
 
@@ -47,5 +69,6 @@ exports.down = function(knex, Promise) {
     .dropTableIfExists('authentication')
     .dropTableIfExists('courses')
     .dropTableIfExists('units')
-    .dropTableIfExists('students');
+    .dropTableIfExists('students')
+    .dropTableIfExists('attendance');
 };

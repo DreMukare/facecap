@@ -1,4 +1,7 @@
 {
+  "authentication": [
+    { "id": 1, "login_id": "lec-001-2019", "password": "$2b$10$hs/VozRYb7LGQd4rDspm6eUzh0yBDdRI/23WhbnorC2k8kOG4kr.6" }
+  ],
   "courses": [
     { "course_id": 1, "course_name": "Computer Technology", "course_code": "BCT" },
     { "course_id": 2, "course_name": "Computer Science", "course_code": "BCS" },
@@ -8,26 +11,38 @@
     { "course_id": 6, "course_name": "Software Engineering", "course_code": "BSE" }
   ],
   "units": [
-    { "unit_id": 1, "unit_name": "Accounting Software", "unit_code": "BCT2105", "course_id": 1 },
-    { "unit_id": 2, "unit_name": "Operating System I", "unit_code": "BIT2106", "course_id": 1 },
-    { "unit_id": 3, "unit_name": "Object Oriented Programming", "unit_code": "BIT2109", "course_id": 1 },
-    { "unit_id": 4, "unit_name": "Principles of Electrical Engineering", "unit_code": "BCT2202", "course_id": 1 },
-    { "unit_id": 5, "unit_name": "Differential Calculus", "unit_code": "CCS2121", "course_id": 2 },
-    { "unit_id": 6, "unit_name": "Electronics", "unit_code": "CCS2122", "course_id": 2 },
-    { "unit_id": 7, "unit_name": "Database Systems I", "unit_code": "CCS2127", "course_id": 2 },
-    { "unit_id": 8, "unit_name": "Numerical Linear Algebra", "unit_code": "CCS2128", "course_id": 2 }
+    { "unit_id": 1, "unit_name": "Accounting Software", "unit_code": "BCT2105", "course_id": 1, "total_hours": 60 },
+    { "unit_id": 2, "unit_name": "Operating System I", "unit_code": "BIT2106", "course_id": 1, "total_hours": 60 },
+    { "unit_id": 3, "unit_name": "Object Oriented Programming", "unit_code": "BIT2109", "course_id": 1, "total_hours": 60 },
+    { "unit_id": 4, "unit_name": "Principles of Electrical Engineering", "unit_code": "BCT2202", "course_id": 1, "total_hours": 60 },
+    { "unit_id": 5, "unit_name": "Differential Calculus", "unit_code": "CCS2121", "course_id": 2, "total_hours": 60 },
+    { "unit_id": 6, "unit_name": "Electronics", "unit_code": "CCS2122", "course_id": 2, "total_hours": 60 },
+    { "unit_id": 7, "unit_name": "Database Systems I", "unit_code": "CCS2127", "course_id": 2, "total_hours": 60 },
+    { "unit_id": 8, "unit_name": "Numerical Linear Algebra", "unit_code": "CCS2128", "course_id": 2, "total_hours": 60 }
     
   ],
   "students": [
-    { "student_id": 1, "first_name": "Noble", "last_name": "Turcotte", "course_id": 2 },
-    { "student_id": 2, "first_name": "Alysa", "last_name": "Langworth", "course_id": 1 },
-    { "student_id": 3, "first_name": "Demarco", "last_name": "Jones", "course_id": 1 },
-    { "student_id": 4, "first_name": "Velda", "last_name": "Murray", "course_id": 1 },
-    { "student_id": 5, "first_name": "Crawford", "last_name": "Mohr", "course_id": 4 },
-    { "student_id": 6, "first_name": "Christop", "last_name": "Ullrich", "course_id": 5 },
-    { "student_id": 7, "first_name": "Montana", "last_name": "Bode", "course_id": 4 },
-    { "student_id": 8, "first_name": "Imelda", "last_name": "Lesch", "course_id": 5 },
-    { "student_id": 9, "first_name": "Alyce", "last_name": "Gutkowski", "course_id": 3 },
-    { "student_id": 10, "first_name": "Samson", "last_name": "Kilback", "course_id": 4 }
+    { "student_id": 1, "first_name": "Noble", "last_name": "Turcotte", "course_id": 2, "registration_number": "BCS-234-2017" },
+    { "student_id": 2, "first_name": "Alysa", "last_name": "Langworth", "course_id": 1, "registration_number": "BCT-041-2015" },
+    { "student_id": 3, "first_name": "Demarco", "last_name": "Jones", "course_id": 1, "registration_number": "BCT-111-2016" },
+    { "student_id": 4, "first_name": "Velda", "last_name": "Murray", "course_id": 1, "registration_number": "BCT-052-2016" },
+    { "student_id": 5, "first_name": "Crawford", "last_name": "Mohr", "course_id": 4, "registration_number": "BBIT-632-2012" },
+    { "student_id": 6, "first_name": "Christop", "last_name": "Ullrich", "course_id": 5, "registration_number": "MCS-001-2018" },
+    { "student_id": 7, "first_name": "Montana", "last_name": "Bode", "course_id": 4, "registration_number": "BBIT-101-2016" },
+    { "student_id": 8, "first_name": "Imelda", "last_name": "Lesch", "course_id": 5, "registration_number": "MCS-112-2011" },
+    { "student_id": 9, "first_name": "Alyce", "last_name": "Gutkowski", "course_id": 3, "registration_number": "BIT-099-2017" },
+    { "student_id": 10, "first_name": "Samson", "last_name": "Kilback", "course_id": 4, "registration_number": "BBIT-012-2011"  }
+  ],
+  "attendance": [
+    { "id": 1, "student_id": 1, "unit_id": 1, "total_hours": 24 },
+    { "id": 2, "student_id": 2, "unit_id": 7, "total_hours": 11 },
+    { "id": 3, "student_id": 3, "unit_id": 4, "total_hours": 17 },
+    { "id": 4, "student_id": 4, "unit_id": 2, "total_hours": 23 },
+    { "id": 5, "student_id": 5, "unit_id": 8, "total_hours": 2 },
+    { "id": 6, "student_id": 6, "unit_id": 3, "total_hours": 26 },
+    { "id": 7, "student_id": 7, "unit_id": 1, "total_hours": 11 },
+    { "id": 8, "student_id": 8, "unit_id": 3, "total_hours": 14 },
+    { "id": 9, "student_id": 9, "unit_id": 8, "total_hours": 20 },
+    { "id": 10, "student_id": 10, "unit_id": 1, "total_hours": 13 }
   ]
 }
