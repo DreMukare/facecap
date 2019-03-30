@@ -52,6 +52,7 @@ function CreateRecordModal() {
               id="courseSelect"
               onChange={e => setState({ selectedCourse: e.target.value })}
             >
+              <option>Select a course</option>
               {modalState.courses.map(({ course_id, course_name }) => (
                 <option key={course_id} value={course_id}>
                   {course_name}
