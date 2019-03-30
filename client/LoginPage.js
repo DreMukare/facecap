@@ -37,7 +37,8 @@ function LoginForm() {
       .then(response => response.json())
       .then(data => {
         if ('token' in data) {
-          window.location.assign('/home');
+          sessionStorage.setItem('token', data.token);
+          window.location.assign('/home/dashboard');
           return;
         }
         setState({ invalid: true });

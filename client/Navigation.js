@@ -6,7 +6,11 @@ function Navigation() {
     <Navbar color="dark">
       <NavbarBrand className="text-white">Class attendance</NavbarBrand>
       <Nav navbar className="ml-auto mr-4">
-        <NavItem>
+        <NavItem
+          onClick={() => {
+            sessionStorage.removeItem('token');
+          }}
+        >
           <NavLink href="/" className="text-white">
             Log out
           </NavLink>
