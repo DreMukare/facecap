@@ -42,6 +42,16 @@ app.get('/api/students', function(q, s, x) {
   db.fetchAll('students').then(rows => s.json(rows));
 });
 
+app.get('/api/attendance', function(q, s, x) {
+  const { student_id } = q.query;
+  const promise = db.fetchAll('attendance');
+  if (student_id) {
+    promise.where({ student_id }).then(rows => s.json(rows));
+  } else {
+    promise.then(rows => s.json(rows));
+  }
+});
+
 app.listen(PORT, function() {
   console.log('Listening on', PORT);
 });

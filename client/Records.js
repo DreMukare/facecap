@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { Row, Table } from 'reactstrap';
 import CreateRecord from './CreateRecord';
+import StatsPage from './StatsPage';
 
 function RecordsTable() {
   const [recordsState, set] = React.useState({
@@ -27,7 +28,14 @@ function RecordsTable() {
       <tbody>
         {recordsState.data.map(
           ({ student_id, registration_number, first_name, last_name }) => (
-            <tr key={student_id}>
+            <tr
+              key={student_id}
+              onClick={() => {
+                window.location.assign(
+                  `/home/records/${student_id}/statistics`
+                );
+              }}
+            >
               <th scope="row">{registration_number}</th>
               <td>{first_name}</td>
               <td>{last_name}</td>
@@ -45,6 +53,11 @@ function Records({ match }) {
     <Row>
       <Route exact path={path} component={RecordsTable} />
       <Route exact path={`${path}/capture`} component={CreateRecord} />
+      <Route
+        exact
+        path={`${path}/:student_id/statistics`}
+        render={props => <StatsPage {...props} />}
+      />
     </Row>
   );
 }
