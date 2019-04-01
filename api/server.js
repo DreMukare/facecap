@@ -42,6 +42,13 @@ app.get('/api/students', function(q, s, x) {
   db.fetchAll('students').then(rows => s.json(rows));
 });
 
+app.get('/api/students/:student_id', function(q, s, x) {
+  const { student_id } = q.params;
+  db.fetchAll('students')
+    .where({ student_id })
+    .then(rows => s.json(rows));
+});
+
 app.get('/api/attendance', function(q, s, x) {
   const { student_id } = q.query;
   const promise = db.fetchAll('attendance');

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Cell, PieChart, Pie, Tooltip } from 'recharts';
 
-function Chart({ data }) {
+function Chart({ student_id }) {
   const colors = ['#00C49F', '#FFBB28', '#FF8042', '#0088FE'];
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({
@@ -30,15 +30,31 @@ function Chart({ data }) {
     );
   };
 
+  const [state, set] = React.useState({
+    attendance: {}
+  });
+  const setState = next => set(Object.assign({}, state, next));
+
+  React.useEffect(() => {
+    fetch(`http://localhost:3000/api/attendance?student_id=${student_id}`)
+      .then(response => response.json())
+      .then(([attendance]) => setState({ attendance }));
+  }, [student_id]);
+
+  const data = [
+    { name: 'Total hours attended', value: state.attendance.total_hours },
+    { name: 'Total hours left', value: 60 - state.attendance.total_hours }
+  ];
+
   return (
-    <PieChart width={500} height={500}>
+    <PieChart width={400} height={300}>
       <Pie
         dataKey="value"
         isAnimationActive={false}
         data={data}
-        cx={100}
-        cy={100}
-        outerRadius={80}
+        cx={200}
+        cy={150}
+        outerRadius={100}
         fill="#8884d8"
         label={renderCustomizedLabel}
         labelLine={false}
