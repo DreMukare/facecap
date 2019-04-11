@@ -71,7 +71,9 @@ function CreateRecordModal() {
         </Form>
       </ModalBody>
       <ModalFooter>
-        <Button color="primary">Start</Button>
+        <Button color="primary" onClick={toggle}>
+          Start
+        </Button>
         <Button color="secondary" onClick={toggle}>
           Cancel
         </Button>
