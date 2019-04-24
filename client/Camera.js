@@ -5,17 +5,14 @@ import { CameraIcon } from './Icons';
 import CaptureModal from './CaptureModal';
 
 function Camera({ toggleClicked }) {
-  const [state, set] = React.useState({
-    isOpen: false,
-    imageSrc: ''
-  });
-
-  const setState = next => set(Object.assign({}, state, next));
-  const toggle = () => setState({ isOpen: !state.isOpen });
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [imageSrc, setImageSrc] = React.useState('');
+  const toggle = React.useCallback(() => setIsOpen(!isOpen), [isOpen]);
   const ref = React.createRef();
   const capture = () => {
     const imageSrc = ref.current.getScreenshot();
-    setState({ imageSrc, isOpen: true });
+    setImageSrc(imageSrc);
+    setIsOpen(true);
   };
   const videoConstraints = {
     width: 1280,
@@ -25,9 +22,9 @@ function Camera({ toggleClicked }) {
   return (
     <React.Fragment>
       <CaptureModal
-        isOpen={state.isOpen}
+        isOpen={isOpen}
         toggle={toggle}
-        imageSrc={state.imageSrc}
+        imageSrc={imageSrc}
         toggleClicked={toggleClicked}
       />
       <Card>

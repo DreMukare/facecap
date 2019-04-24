@@ -12,35 +12,29 @@ import {
 } from 'reactstrap';
 
 function CreateRecordModal() {
-  const [modalState, set] = React.useState({
-    isOpen: true,
-    courses: [],
-    units: [],
-    selectedCourse: null
-  });
-
-  const setState = next => set(Object.assign({}, modalState, next));
+  const [isOpen, setIsOpen] = React.useState(true);
+  const [selectedCourse, setSelectedCourse] = React.useState(null);
+  const [units, setUnits] = React.useState([]);
+  const [courses, setCourses] = React.useState([]);
 
   React.useEffect(() => {
     fetch('http://localhost:3000/api/courses')
       .then(response => response.json())
-      .then(courses => setState({ courses }));
-  }, [modalState.courses.length]);
+      .then(setCourses);
+  }, []);
 
   React.useEffect(() => {
-    if (modalState.selectedCourse) {
-      fetch(
-        `http://localhost:3000/api/units?course_id=${modalState.selectedCourse}`
-      )
+    if (selectedCourse) {
+      fetch(`http://localhost:3000/api/units?course_id=${selectedCourse}`)
         .then(response => response.json())
-        .then(units => setState({ units }));
+        .then(setUnits);
     }
-  }, [modalState.selectedCourse]);
+  }, [selectedCourse]);
 
-  const toggle = () => setState({ isOpen: !modalState.isOpen });
+  const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <Modal isOpen={modalState.isOpen} toggle={toggle}>
+    <Modal isOpen={isOpen} toggle={toggle}>
       <ModalHeader toggle={toggle}>New</ModalHeader>
       <ModalBody>
         <Form>
@@ -50,10 +44,10 @@ function CreateRecordModal() {
               type="select"
               name="courseSelect"
               id="courseSelect"
-              onChange={e => setState({ selectedCourse: e.target.value })}
+              onChange={e => setSelectedCourse(e.target.value)}
             >
               <option>Select a course</option>
-              {modalState.courses.map(({ course_id, course_name }) => (
+              {courses.map(({ course_id, course_name }) => (
                 <option key={course_id} value={course_id}>
                   {course_name}
                 </option>
@@ -63,7 +57,7 @@ function CreateRecordModal() {
           <FormGroup>
             <Label for="unitName">unit</Label>
             <Input type="select" name="unitSelect" id="unitSelect">
-              {modalState.units.map(({ unit_id, unit_name }) => (
+              {units.map(({ unit_id, unit_name }) => (
                 <option key={unit_id}>{unit_name}</option>
               ))}
             </Input>

@@ -11,15 +11,12 @@ import {
 import Chart from './PieChart';
 
 function StatsPage({ match }) {
-  const [state, set] = React.useState({
-    student: {}
-  });
-  const setState = next => set(Object.assign({}, state, next));
+  const [student, setStudent] = React.useState({});
 
   React.useEffect(() => {
     fetch(`http://localhost:3000/api/students/${match.params.student_id}`)
       .then(response => response.json())
-      .then(([student]) => setState({ student }));
+      .then(([student]) => setStudent(student));
   }, [match.params.student_id]);
 
   return (
@@ -35,15 +32,15 @@ function StatsPage({ match }) {
                 <tbody>
                   <tr>
                     <th scope="row">First name:</th>
-                    <td>{state.student.first_name}</td>
+                    <td>{student.first_name}</td>
                   </tr>
                   <tr>
                     <th scope="row">Last name:</th>
-                    <td>{state.student.last_name}</td>
+                    <td>{student.last_name}</td>
                   </tr>
                   <tr>
                     <th scope="row">Registration number:</th>
-                    <td>{state.student.registration_number}</td>
+                    <td>{student.registration_number}</td>
                   </tr>
                 </tbody>
               </Table>

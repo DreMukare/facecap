@@ -4,23 +4,20 @@ import Modal from './Modal';
 import Camera from './Camera';
 
 function CreateRecord() {
-  const [recordsState, set] = React.useState({
-    data: [],
-    clicked: null
-  });
-  const setState = next => set(Object.assign({}, recordsState, next));
+  const [students, setStudents] = React.useState([]);
+  const [clicked, setClicked] = React.useState(false);
   const toggleClicked = () => {
-    if (recordsState.clicked !== null) {
+    if (clicked) {
       return window.alert('Student is already registered or does not exist!');
     }
-    setState({ clicked: 1 });
+    setClicked(true);
   };
 
   React.useEffect(() => {
     fetch('http://localhost:3000/api/students')
       .then(response => response.json())
-      .then(data => setState({ data }));
-  }, [recordsState.data.length]);
+      .then(setStudents);
+  }, []);
 
   return (
     <React.Fragment>
@@ -34,8 +31,8 @@ function CreateRecord() {
             </tr>
           </thead>
           <tbody>
-            {recordsState.data
-              .slice(0, recordsState.clicked)
+            {students
+              .slice(0, clicked)
               .map(({ student_id, registration_number }, index) => (
                 <tr key={student_id}>
                   <th scope="row">{++index}</th>

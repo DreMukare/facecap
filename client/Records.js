@@ -5,16 +5,13 @@ import CreateRecord from './CreateRecord';
 import StatsPage from './StatsPage';
 
 function RecordsTable() {
-  const [recordsState, set] = React.useState({
-    data: []
-  });
-  const setState = next => set(Object.assign({}, recordsState, next));
+  const [students, setStudents] = React.useState([]);
 
   React.useEffect(() => {
     fetch('http://localhost:3000/api/students')
       .then(response => response.json())
-      .then(data => setState({ data }));
-  }, [recordsState.data.length]);
+      .then(setStudents);
+  }, []);
 
   return (
     <Table bordered hover>
@@ -26,7 +23,7 @@ function RecordsTable() {
         </tr>
       </thead>
       <tbody>
-        {recordsState.data.map(
+        {students.map(
           ({ student_id, registration_number, first_name, last_name }) => (
             <tr
               key={student_id}
