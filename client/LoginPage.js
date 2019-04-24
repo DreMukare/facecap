@@ -12,24 +12,25 @@ import {
   Row
 } from 'reactstrap';
 
+function useInput(cfg) {
+  const [value, setValue] = React.useState(() => cfg.defaultValue || '');
+  const onChange = React.useCallback(e => setValue(e.currentTarget.value));
+  return { value, props: { value, onChange } };
+}
+
 function LoginForm() {
-  const [formState, set] = React.useState({
-    input: { loginID: '', password: '' },
-    invalid: false
-  });
-
-  const setState = next => set(Object.assign({}, formState, next));
-
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setState({ input: Object.assign({}, formState.input, { [name]: value }) });
-  };
+  const loginID = useInput({});
+  const password = useInput({});
+  const [failedLogin, setFailedLogin] = React.useState(false);
 
   const handleSubmit = e => {
     e.preventDefault();
     fetch('http://localhost:3000/api/accounts', {
       method: 'POST',
-      body: JSON.stringify(formState.input),
+      body: JSON.stringify({
+        loginID: loginID.value,
+        password: password.value
+      }),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -41,15 +42,13 @@ function LoginForm() {
           window.location.assign('/home/dashboard');
           return;
         }
-        setState({ invalid: true });
+        setFailedLogin(true);
       });
   };
 
   return (
     <Form>
-      {formState.invalid && (
-        <Alert color="danger">Invalid login or password!</Alert>
-      )}
+      {failedLogin && <Alert color="danger">Invalid login or password!</Alert>}
       <FormGroup>
         <Label for="loginID">Login ID</Label>
         <Input
@@ -57,7 +56,7 @@ function LoginForm() {
           name="loginID"
           id="loginID"
           placeholder="xxx-xxx-xxxx"
-          onChange={handleChange}
+          {...loginID.props}
         />
       </FormGroup>
       <FormGroup>
@@ -67,7 +66,7 @@ function LoginForm() {
           name="password"
           id="password"
           placeholder="********"
-          onChange={handleChange}
+          {...password.props}
         />
       </FormGroup>
       <FormGroup check>
